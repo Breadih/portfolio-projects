@@ -2,6 +2,10 @@ declare const axios: {
     post: <T = any>(url: string, data?: any) => Promise<{ data: T }>
   };
   
+console.log(window.location.href)
+
+const CUrl = window.location.href 
+
 
 interface RobloxUser {
     requestedUsername: string;
@@ -35,7 +39,7 @@ interface RobloxUser {
       try {
         // No import needed, Axios is available globally from the CDN
         const response = await axios.post<RobloxUserResponse>(
-            'https://users.roblox.com/v1/usernames/users',
+            `/api/getRobloxUser`,
             {
               usernames: [searchTerm],
               excludeBannedUsers: true
