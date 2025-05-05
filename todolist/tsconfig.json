@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+    "target": "ES6", // Ensure you use ES6 or higher
+    "module": "ES6", // Use ESModules for compatibility with the browser
+    "outDir": "./scripts", // Optional: You can specify an output folder for compiled JS files
+    "strict": true, // Optional: Enable strict typing checks
+    "esModuleInterop": true, // Enable compatibility between CommonJS and ESModules
+    "skipLibCheck": true,
+  },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f0f0f0;
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+  }
+  
+  #searchInput {
+    width: 300px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #taskList {
+    list-style: none;
+    padding: 0;
+    width: 300px;
+  }
+  
+  #taskList li {
+    background-color: white;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #taskList li i {
+    color: #ff9e00;
+  }
+  
