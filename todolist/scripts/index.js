@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+console.log(window.location.href);
+const CUrl = window.location.href;
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const taskList = document.getElementById('taskList');
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         try {
             // No import needed, Axios is available globally from the CDN
-            const response = yield axios.post('https://users.roblox.com/v1/usernames/users', {
+            const response = yield axios.post(`/api/getRobloxUser`, {
                 usernames: [searchTerm],
                 excludeBannedUsers: true
             });
