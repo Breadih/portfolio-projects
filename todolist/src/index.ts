@@ -23,7 +23,7 @@ interface RobloxUser {
     const searchInput = document.getElementById('searchInput') as HTMLInputElement;
     const taskList = document.getElementById('taskList') as HTMLUListElement;
   
-    searchInput.addEventListener('input', async () => {
+    searchInput.addEventListener('input', () => {
       const searchTerm = searchInput.value.toLowerCase().trim();
   
       if (searchTerm.length === 0) {
@@ -36,29 +36,27 @@ interface RobloxUser {
         excludeBannedUsers: true
       };
   
-      try {
-        // No import needed, Axios is available globally from the CDN
-        const response = await axios.post<RobloxUserResponse>(
-            `/api/getRobloxUser`,
-            {
-              usernames: [searchTerm],
-              excludeBannedUsers: true
-            }
-          );
-          
+      axios.post<RobloxUserResponse>(
+        '/api/getRobloxUser',
+        RequestForm
+      )
+        .then(response => {
           const users = response.data.data;
-          
   
-        if (!users || users.length === 0) {
-          taskList.innerHTML = `<li><i class="fi fi-rs-triangle-warning"></i> No users found!</li>`;
-          return;
-        }
+          if (!users || users.length === 0) {
+            taskList.innerHTML = `<li><i class="fi fi-rs-triangle-warning"></i> No users found!</li>`;
+            return;
+          }
   
-        renderUsers(users);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-        taskList.innerHTML = `<li><i class="fi fi-rs-triangle-warning"></i> Something went wrong!</li>`;
-      }
+          renderUsers(users);
+        })
+        .catch(error => {
+          console.error('Error fetching users:', error);
+          taskList.innerHTML = `<li><i class="fi fi-rs-triangle-warning"></i> Something went wrong!</li>`;
+        })
+        .finally(() => {
+          // Optional: Add any cleanup code here if needed
+        });
     });
   
     function renderUsers(users: RobloxUser[]) {
@@ -74,4 +72,3 @@ interface RobloxUser {
       });
     }
   });
-  

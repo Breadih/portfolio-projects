@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import axios from 'axios'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -6,16 +7,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const robloxRes = await fetch('https://users.roblox.com/v1/usernames/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(req.body),
-    });
+    axios.post(`https://users.roblox.com/v1/users/username`).then(response => res.status(200).json(response.data));
 
-    const data = await robloxRes.json();
-    res.status(200).json(data);
+  
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch Roblox user data' });
   }
